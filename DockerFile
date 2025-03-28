@@ -1,0 +1,17 @@
+# Use a compatible base image with the correct glibc
+FROM mcr.microsoft.com/playwright/python:v1.42.1-jammy
+
+# Set workdir
+WORKDIR /app
+
+# Copy bot files
+COPY . .
+
+# Install Python dependencies
+RUN pip install -r requirements.txt
+
+# Expose port (not strictly needed for a bot, but Railway likes it)
+EXPOSE 8000
+
+# Start the bot
+CMD ["python", "discord_bot.py"]
